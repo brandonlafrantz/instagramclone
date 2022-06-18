@@ -19,6 +19,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { Comment } from "../Comment/Comment";
 import { PostProps } from "../../types/models";
 import DoublePressable from "../DoublePressable/DoublePressable";
+import Carousel from "../Carousel/Carousel";
 
 interface FeedPostProps {
   post: PostProps;
@@ -46,6 +47,22 @@ const FeedPost = ({ post }: FeedPostProps) => {
     lastTap = now;
   };
 
+  let content = null;
+  if (post.image) {
+    content = (
+      <DoublePressable onDoublePress={toggleLiked}>
+        <Image
+          source={{
+            uri: post.image,
+          }}
+          style={styles.image}
+        />
+      </DoublePressable>
+    );
+  } else if (post.images) {
+    content = <Carousel images={post.images} onDoublePress={toggleLiked} />;
+  }
+
   return (
     <>
       <View style={styles.post}>
@@ -64,14 +81,9 @@ const FeedPost = ({ post }: FeedPostProps) => {
             style={styles.threeDots}
           />
         </View>
-        <DoublePressable onDoublePress={toggleLiked}>
-          <Image
-            source={{
-              uri: post.image,
-            }}
-            style={styles.image}
-          />
-        </DoublePressable>
+
+        {content}
+
         <View style={styles.footer}>
           <View style={styles.iconContainer}>
             <Pressable onPress={toggleLiked}>

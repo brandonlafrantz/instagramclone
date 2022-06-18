@@ -1,9 +1,8 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, PressableProps } from "react-native";
 import React, { PropsWithChildren, ReactNode } from "react";
 
-interface DoublePressableProps {
+interface DoublePressableProps extends PressableProps {
   onDoublePress?: () => void;
-  children: ReactNode;
 }
 
 const DoublePressable = ({
@@ -13,7 +12,7 @@ const DoublePressable = ({
   let lastTap = 0;
   const handleDoublePress = () => {
     const now = Date.now();
-    if (now - lastTap < 300) {
+    if (now - lastTap < 400) {
       onDoublePress();
     }
 
