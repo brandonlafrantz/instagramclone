@@ -1,42 +1,31 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import colors from "./src/theme/colors";
-import { size, weight } from "./src/theme/fonts";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  StatusBar,
+  ScrollView,
+  FlatList,
+} from "react-native";
+
+import HomeScreen from "./src/screens/HomeScreen/HomeScreen";
 
 const App = () => {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text
+    <>
+      <SafeAreaView
         style={{
-          color: colors.primary,
-          fontSize: size.xl,
+          flex: 1,
+          marginTop: StatusBar.currentHeight,
         }}
       >
-        Hello World! Yoooooo!
-        <AntDesign name="stepforward" size={25} />
-      </Text>
-    </View>
+        <HomeScreen />
+      </SafeAreaView>
+      <ExpoStatusBar style="auto" />
+    </>
   );
 };
 
-/* export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello Yooooo!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-} */
-
-/* const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
- */
+const styles = StyleSheet.create({});
 
 export default App;
